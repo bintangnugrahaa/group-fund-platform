@@ -123,7 +123,7 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('thumbnail'),
+                Tables\Columns\ImageColumn::make('photo'),
 
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),

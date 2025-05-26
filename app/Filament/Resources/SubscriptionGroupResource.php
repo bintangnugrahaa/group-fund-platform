@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SubscriptionGroupResource\Pages;
 use App\Filament\Resources\SubscriptionGroupResource\RelationManagers;
+use App\Filament\Resources\SubscriptionGroupResource\RelationManagers\GroupMessagesRelationManager;
+use App\Filament\Resources\SubscriptionGroupResource\RelationManagers\GroupParticipantsRelationManager;
 use App\Models\Product;
 use App\Models\SubscriptionGroup;
 use Filament\Forms;
@@ -69,7 +71,7 @@ class SubscriptionGroupResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('product.thumbnail')
+                Tables\Columns\ImageColumn::make('product.photo')
                     ->label('Photo'),
 
                 Tables\Columns\TextColumn::make('productSubscription.booking_trx_id')
@@ -111,7 +113,8 @@ class SubscriptionGroupResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            GroupMessagesRelationManager::class,
+            GroupParticipantsRelationManager::class,
         ];
     }
 

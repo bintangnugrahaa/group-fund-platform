@@ -171,7 +171,7 @@ class ProductSubscriptionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('product.thumbnail'),
+                Tables\Columns\ImageColumn::make('product.photo'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('booking_trx_id')
