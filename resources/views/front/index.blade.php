@@ -1,20 +1,5 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('output.css') }}" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet" />
-</head>
-
-<body>
+@extends('layouts.master')
+@section('content')
     <nav class="relative w-full max-w-[1280px] mx-auto h-[140px]">
         <div class="fixed top-10 w-full max-w-[1280px] px-16 z-20">
             <div
@@ -33,8 +18,7 @@
                     </li>
                     <div class="h-[18px] border-[1.5px] border-patungan-border"></div>
                     <li>
-                        <a href="#"
-                            class="font-semibold text-lg leading-[22.68px] text-patungan-grey">Testimoni</a>
+                        <a href="#" class="font-semibold text-lg leading-[22.68px] text-patungan-grey">Testimoni</a>
                     </li>
                     <div class="h-[18px] border-[1.5px] border-patungan-border"></div>
                     <li>
@@ -93,20 +77,17 @@
                 <p class="font-Grifter font-bold text-[42px] leading-[44px] text-white">2.209+</p>
                 <p class="font-medium text-xl leading-[25px] text-patungan-violet">Total User</p>
             </div>
-            <img src="{{ asset('assets/images/icons/star-divider-white.svg') }}" class="w-6 flex shrink-0"
-                alt="icon">
+            <img src="{{ asset('assets/images/icons/star-divider-white.svg') }}" class="w-6 flex shrink-0" alt="icon">
             <div class="flex flex-col w-[222px] gap-[6px] text-center">
                 <p class="font-Grifter font-bold text-[42px] leading-[44px] text-white">9/10</p>
                 <p class="font-medium text-xl leading-[25px] text-patungan-violet">Happy Client</p>
             </div>
-            <img src="{{ asset('assets/images/icons/star-divider-white.svg') }}" class="w-6 flex shrink-0"
-                alt="icon">
+            <img src="{{ asset('assets/images/icons/star-divider-white.svg') }}" class="w-6 flex shrink-0" alt="icon">
             <div class="flex flex-col w-[222px] gap-[6px] text-center">
                 <p class="font-Grifter font-bold text-[42px] leading-[44px] text-white">12</p>
                 <p class="font-medium text-xl leading-[25px] text-patungan-violet">Total Services</p>
             </div>
-            <img src="{{ asset('assets/images/icons/star-divider-white.svg') }}" class="w-6 flex shrink-0"
-                alt="icon">
+            <img src="{{ asset('assets/images/icons/star-divider-white.svg') }}" class="w-6 flex shrink-0" alt="icon">
             <div class="flex flex-col w-[222px] gap-[6px] text-center">
                 <p class="font-Grifter font-bold text-[42px] leading-[44px] text-white">4.920+</p>
                 <p class="font-medium text-xl leading-[25px] text-patungan-violet">Total Transactions</p>
@@ -115,8 +96,8 @@
     </section>
     <section id="Products" class="relative w-full overflow-hidden">
         <div class="Background-Effect absolute w-full h-full overflow-hidden">
-            <img src="{{ asset('assets/images/backgrounds/Ellipse-top.svg') }}"
-                class="absolute top-0 -right-[337px] z-0" alt="eclipse bg">
+            <img src="{{ asset('assets/images/backgrounds/Ellipse-top.svg') }}" class="absolute top-0 -right-[337px] z-0"
+                alt="eclipse bg">
             <img src="{{ asset('assets/images/backgrounds/Ellipse-bottom.svg') }}"
                 class="absolute bottom-0 -left-[283px] z-0" alt="eclipse bg">
         </div>
@@ -129,16 +110,16 @@
                 <a href="#"
                     class="flex items-center rounded-full h-[60px] w-fit py-3 px-9 gap-[6px] bg-white border border-patungan-border">
                     <span class="font-bold text-lg leading-5">Semua Product</span>
-                    <img src="{{ asset('assets/images/icons/arrow-circle-down-black.svg') }}"
-                        class="w-6 flex shrink-0" alt="">
+                    <img src="{{ asset('assets/images/icons/arrow-circle-down-black.svg') }}" class="w-6 flex shrink-0"
+                        alt="">
                 </a>
             </div>
             <div class="grid grid-cols-3 gap-6">
                 @forelse($newProducts as $itemNewProduct)
                     <div class="product-card flex flex-col rounded-[32px] overflow-hidden bg-white">
                         <div class="w-full h-[180px] flex shrink-0 bg-[#D9D9D9]">
-                            <img src="{{ Storage::url($itemNewProduct->thumbnail) }}"
-                                class="w-full h-full object-cover" alt="thumbnails">
+                            <img src="{{ Storage::url($itemNewProduct->thumbnail) }}" class="w-full h-full object-cover"
+                                alt="thumbnails">
                         </div>
                         <div class="flex flex-col p-6 gap-6">
                             <div class="flex items-center gap-3">
@@ -206,40 +187,39 @@
                         pengalaman menarik bagi setiap pelanggan setia kami.</p>
                     <div class="grid grid-cols-2 gap-6">
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}"
-                                class="w-[18px] flex shrink-0" alt="icon">
+                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}" class="w-[18px] flex shrink-0"
+                                alt="icon">
                             <p class="font-medium text-lg leading-[22px] text-patungan-grey">Data pribadi aman</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}"
-                                class="w-[18px] flex shrink-0" alt="icon">
+                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}" class="w-[18px] flex shrink-0"
+                                alt="icon">
                             <p class="font-medium text-lg leading-[22px] text-patungan-grey">beragam pembayaran</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}"
-                                class="w-[18px] flex shrink-0" alt="icon">
+                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}" class="w-[18px] flex shrink-0"
+                                alt="icon">
                             <p class="font-medium text-lg leading-[22px] text-patungan-grey">Akun Resmi & legal</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}"
-                                class="w-[18px] flex shrink-0" alt="icon">
+                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}" class="w-[18px] flex shrink-0"
+                                alt="icon">
                             <p class="font-medium text-lg leading-[22px] text-patungan-grey">24/7 Customer services</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}"
-                                class="w-[18px] flex shrink-0" alt="icon">
+                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}" class="w-[18px] flex shrink-0"
+                                alt="icon">
                             <p class="font-medium text-lg leading-[22px] text-patungan-grey">Lebih hemat 50%</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}"
-                                class="w-[18px] flex shrink-0" alt="icon">
+                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}" class="w-[18px] flex shrink-0"
+                                alt="icon">
                             <p class="font-medium text-lg leading-[22px] text-patungan-grey">Dan masih banyak lainnya
                             </p>
                         </div>
                     </div>
                 </div>
-                <a href="#"
-                    class="flex items-center rounded-full h-[60px] w-fit px-9 gap-[6px] bg-patungan-orange">
+                <a href="#" class="flex items-center rounded-full h-[60px] w-fit px-9 gap-[6px] bg-patungan-orange">
                     <span class="font-bold text-lg leading-5 text-white">Pesan Sekarang</span>
                     <img src="{{ asset('assets/images/icons/arrow-right-white.svg') }}" class="w-6 flex shrink-0"
                         alt="icon">
@@ -310,18 +290,18 @@
                     <p class="font-Grifter font-bold text-4xl leading-[37px]">Beragam Metode pembayaran</p>
                     <div class="flex items-center justify-center gap-6">
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}"
-                                class="w-[18px] flex shrink-0" alt="icon">
+                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}" class="w-[18px] flex shrink-0"
+                                alt="icon">
                             <p class="font-medium text-lg leading-[22px] text-patungan-grey">Bank Transfer</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}"
-                                class="w-[18px] flex shrink-0" alt="icon">
+                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}" class="w-[18px] flex shrink-0"
+                                alt="icon">
                             <p class="font-medium text-lg leading-[22px] text-patungan-grey">Virtual Account</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}"
-                                class="w-[18px] flex shrink-0" alt="icon">
+                            <img src="{{ asset('assets/images/icons/verify-green.svg') }}" class="w-[18px] flex shrink-0"
+                                alt="icon">
                             <p class="font-medium text-lg leading-[22px] text-patungan-grey">Digital Wallet</p>
                         </div>
                     </div>
@@ -1321,8 +1301,7 @@
                             <a href="#" class="hover:text-patungan-black transition-all duration-300">Home</a>
                         </li>
                         <li class="font-medium leading-5 text-patungan-grey">
-                            <a href="#"
-                                class="hover:text-patungan-black transition-all duration-300">Layanan</a>
+                            <a href="#" class="hover:text-patungan-black transition-all duration-300">Layanan</a>
                         </li>
                         <li class="font-medium leading-5 text-patungan-grey">
                             <a href="#" class="hover:text-patungan-black transition-all duration-300">Cara
@@ -1376,8 +1355,10 @@
             </div>
         </div>
     </footer>
+@endsection
 
-    <script src="js/accordion.js"></script>
+@push('after-scripts')
+    <script src="{{ asset('js/accordion.js') }}"></script>
     <script>
         const texts = document.querySelectorAll('#slider span');
         const sliderContainer = document.getElementById('slider-container');
@@ -1418,6 +1399,4 @@
             setInterval(updateSlider, 2000);
         });
     </script>
-</body>
-
-</html>
+@endpush

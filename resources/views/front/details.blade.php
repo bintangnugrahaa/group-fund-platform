@@ -1,1 +1,3 @@
-halaman details
+@extends('layouts.master')
+@section('content')
+@endsection
