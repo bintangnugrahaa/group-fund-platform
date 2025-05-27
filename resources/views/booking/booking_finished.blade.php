@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Success - ' . $productSubscription->product->name)
 @section('content')
     <div
         class="flex flex-col min-h-screen w-full justify-center items-center bg-[linear-gradient(113.19deg,#E25520_0%,#A83279_100.41%)]">
