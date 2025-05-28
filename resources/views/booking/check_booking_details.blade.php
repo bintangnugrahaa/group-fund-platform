@@ -77,12 +77,15 @@
                                     @if ($subscriptionGroup->groupMessages->isNotEmpty())
                                         <div class="flex items-center justify-between">
                                             <h2 class="font-bold text-xl leading-[25px]">Broadcast Massage</h2>
-                                            <p id="Badge"
-                                                class="w-fit p-[12px_24px] rounded-full bg-[#3D7452] font-bold text-lg leading-[22px] text-white">
-                                                Delivery</p>
-                                            <p id="Badge"
-                                                class="w-fit p-[12px_24px] rounded-full bg-[#007B9D] font-bold text-lg leading-[22px] text-white">
-                                                Success</p>
+                                            @if ($remainingSlots == 0)
+                                                <p id="Badge"
+                                                    class="w-fit p-[12px_24px] rounded-full bg-[#3D7452] font-bold text-lg leading-[22px] text-white">
+                                                    Delivery</p>
+                                            @else
+                                                <p id="Badge"
+                                                    class="w-fit p-[12px_24px] rounded-full bg-[#007B9D] font-bold text-lg leading-[22px] text-white">
+                                                    Success</p>
+                                            @endif
                                         </div>
                                         @foreach ($subscriptionGroup->groupMessages as $message)
                                             <div class="message-card flex gap-4">
@@ -126,13 +129,15 @@
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center gap-4">
                                                 <div class="flex w-[62px] h-[62px] shrink-0 rounded-xl overflow-hidden">
-                                                    <img src="{{ asset('assets/images/logos/netflix.png') }}"
+                                                    <img src="{{ Storage::url($bookingDetails->product->photo) }}"
                                                         class="w-full h-full object-contain" alt="logo">
                                                 </div>
                                                 <div>
-                                                    <p class="font-bold text-xl leading-[25px]">Netflix</p>
+                                                    <p class="font-bold text-xl leading-[25px]">
+                                                        {{ $bookingDetails->product->name }}</p>
                                                     <p class="text-patungan-grey">
-                                                        <span class="font-semibold text-xl leading-[25px]">Rp46.500</span>
+                                                        <span class="font-semibold text-xl leading-[25px]">Rp
+                                                            {{ number_format($bookingDetails->product->price_per_person, 0, '.', '.') }}</span>
                                                         <span class="font-bold leading-5">/person</span>
                                                     </p>
                                                 </div>
@@ -140,44 +145,53 @@
                                             <div class="flex items-center rounded-lg p-2 gap-1 bg-patungan-red/10">
                                                 <img src="{{ asset('assets/images/icons/clock-red.svg') }}"
                                                     class="w-6 flex shrink-0" alt="icon">
-                                                <p class="font-bold leading-5 text-patungan-red">1 month</p>
+                                                <p class="font-bold leading-5 text-patungan-red">
+                                                    {{ $bookingDetails->product->duration }} month</p>
                                             </div>
                                         </div>
                                         <div class="flex flex-col gap-4">
                                             <hr class="border-patungan-border">
                                             <div class="flex items-center justify-between">
                                                 <p class="font-semibold text-lg leading-[22px] text-patungan-grey">Date</p>
-                                                <p class="font-bold text-xl leading-[25px]">Sun, 15 Sep 2024</p>
+                                                <p class="font-bold text-xl leading-[25px]">
+                                                    {{ $bookingDetails->created_at->format('D, d M Y') }}</p>
                                             </div>
                                             <div class="flex items-center justify-between">
                                                 <p class="font-semibold text-lg leading-[22px] text-patungan-grey">Original
                                                     Price</p>
-                                                <p class="font-bold text-xl leading-[25px]">Rp186.000</p>
+                                                <p class="font-bold text-xl leading-[25px]">Rp
+                                                    {{ number_format($bookingDetails->product->price, 0, '.', '.') }}</p>
                                             </div>
                                             <div class="flex items-center justify-between">
                                                 <p class="font-semibold text-lg leading-[22px] text-patungan-grey">Harga
                                                     Patungan</p>
-                                                <p class="font-bold text-xl leading-[25px]">Rp46.500</p>
+                                                <p class="font-bold text-xl leading-[25px]">Rp
+                                                    {{ number_format($bookingDetails->product->price_per_person, 0, '.', '.') }}
+                                                </p>
                                             </div>
                                             <div class="flex items-center justify-between">
                                                 <p class="font-semibold text-lg leading-[22px] text-patungan-grey">Durasi
                                                 </p>
-                                                <p class="font-bold text-xl leading-[25px]">1 Month</p>
+                                                <p class="font-bold text-xl leading-[25px]">
+                                                    {{ $bookingDetails->product->duration }} Month</p>
                                             </div>
                                             <div class="flex items-center justify-between">
                                                 <p class="font-semibold text-lg leading-[22px] text-patungan-grey">Group
                                                     Capacity</p>
-                                                <p class="font-bold text-xl leading-[25px]">4</p>
+                                                <p class="font-bold text-xl leading-[25px]">
+                                                    {{ $bookingDetails->product->capacity }}</p>
                                             </div>
                                             <div class="flex items-center justify-between">
                                                 <p class="font-semibold text-lg leading-[22px] text-patungan-grey">PPN 11%
                                                 </p>
-                                                <p class="font-bold text-xl leading-[25px]">Rp10.000</p>
+                                                <p class="font-bold text-xl leading-[25px]">Rp
+                                                    {{ number_format($bookingDetails->total_tax_amount, 0, '.', '.') }}</p>
                                             </div>
                                             <div class="flex items-center justify-between">
                                                 <p class="font-semibold text-lg leading-[22px] text-patungan-grey">Total
                                                     Price</p>
-                                                <p class="font-bold text-xl leading-[25px] text-patungan-red">Rp56.500</p>
+                                                <p class="font-bold text-xl leading-[25px] text-patungan-red">Rp
+                                                    {{ number_format($bookingDetails->total_amount, 0, '.', '.') }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -192,7 +206,7 @@
                                             <img src="{{ asset('assets/images/icons/profile-circle-black.svg') }}"
                                                 class="w-6 h-6 flex shrink-0" alt="icon">
                                             <div class="flex h-6 border border-patungan-border"></div>
-                                            <input type="text" value="Bimore Atreides" readonly
+                                            <input type="text" value="{{ $bookingDetails->name }}" readonly
                                                 class="appearance-none outline-none bg-patungan-bg-grey w-full font-bold text-xl leading-[25px] placeholder:text-patungan-black">
                                         </div>
                                     </label>
@@ -203,7 +217,7 @@
                                             <img src="{{ asset('assets/images/icons/whatsapp-black.svg') }}"
                                                 class="w-6 h-6 flex shrink-0" alt="icon">
                                             <div class="flex h-6 border border-patungan-border"></div>
-                                            <input type="tel" value="+6281292930923" readonly
+                                            <input type="tel" value="{{ $bookingDetails->phone }}" readonly
                                                 class="appearance-none outline-none bg-patungan-bg-grey w-full font-bold text-xl leading-[25px] placeholder:text-patungan-black">
                                         </div>
                                     </label>
@@ -214,7 +228,7 @@
                                             <img src="{{ asset('assets/images/icons/sms-black.svg') }}"
                                                 class="w-6 h-6 flex shrink-0" alt="icon">
                                             <div class="flex h-6 border border-patungan-border"></div>
-                                            <input type="email" value="Bimore@Shaynakit.com" readonly
+                                            <input type="email" value="{{ $bookingDetails->email }}" readonly
                                                 class="appearance-none outline-none bg-patungan-bg-grey w-full font-bold text-xl leading-[25px] placeholder:text-patungan-black">
                                         </div>
                                     </label>
@@ -239,7 +253,7 @@
                                                     <p class="Transfer-To font-bold text-xl leading-[25px]">1935 0009 1200
                                                     </p>
                                                     <p class="font-semibold text-lg leading-[22px] text-patungan-grey">PT
-                                                        Seaccount Angga</p>
+                                                        Nanuraga Jaya Abadi</p>
                                                 </div>
                                                 <button type="button" class="copy-btn flex items-center gap-[6px]"
                                                     onclick="copyTransferTo(this)">
@@ -260,7 +274,8 @@
                                             <div class="flex h-6 border border-patungan-border -mr-4"></div>
                                             <select
                                                 class="px-4 appearance-none outline-none bg-patungan-bg-grey w-full font-bold text-xl leading-[25px] placeholder:text-patungan-black pointer-events-none">
-                                                <option value="" selected>Bank Syariah</option>
+                                                <option value="{{ $bookingDetails->customer_bank_name }}" selected>
+                                                    {{ $bookingDetails->customer_bank_name }}</option>
                                             </select>
                                         </div>
                                     </label>
@@ -272,7 +287,8 @@
                                             <img src="{{ asset('assets/images/icons/user-octagon-black.svg') }}"
                                                 class="w-6 h-6 flex shrink-0" alt="icon">
                                             <div class="flex h-6 border border-patungan-border"></div>
-                                            <input type="text" value="Shadam Bimo" readonly
+                                            <input type="text" value="{{ $bookingDetails->customer_bank_account }}"
+                                                readonly
                                                 class="appearance-none outline-none bg-patungan-bg-grey w-full font-bold text-xl leading-[25px] placeholder:text-patungan-black"
                                                 placeholder="Atas Nama Siapa?">
                                         </div>
@@ -285,7 +301,8 @@
                                             <img src="{{ asset('assets/images/icons/blend-black.svg') }}"
                                                 class="w-6 h-6 flex shrink-0" alt="icon">
                                             <div class="flex h-6 border border-patungan-border"></div>
-                                            <input type="text" value="5000 2000 3000" readonly
+                                            <input type="text" value="{{ $bookingDetails->customer_bank_number }}"
+                                                readonly
                                                 class="appearance-none outline-none bg-patungan-bg-grey w-full font-bold text-xl leading-[25px] placeholder:text-patungan-black"
                                                 pattern="[0-9 ]*" title="Only numbers and spaces are allowed"
                                                 placeholder="Nomor Rekening Kamu?">
@@ -299,12 +316,10 @@
                                         <img src="{{ asset('assets/images/icons/gallery-import-black.svg') }}"
                                             class="w-6 h-6 flex shrink-0" alt="icon">
                                         <div class="flex h-6 border border-patungan-border"></div>
-                                        <p id="File-Name" class="w-full font-bold text-xl leading-[25px]">
-                                            screenshot.png')}}
-                                        </p>
-                                        <a href="#"
-                                            class="font-semibold text-lg leading-[22px] text-patungan-orange text-nowrap">View
-                                            Image</a>
+                                        <div x-show="showImage" class="mt-4">
+                                            <img src="{{ Storage::url($bookingDetails->proof) }}"
+                                                class="w-full h-full object-contain" alt="Proof Image">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -323,10 +338,6 @@
                         </div>
                     </div>
                     <div class="relative flex flex-col rounded-[32px] p-8 gap-6 bg-white">
-                        @php
-                            $totalParticipants = $subscriptionGroup->groupParticipants->count();
-                            $remainingSlots = $productCapacity - $totalParticipants;
-                        @endphp
                         <h2 class="font-bold text-xl leading-[25px]">Group Member
                             {{ $totalParticipants }}/{{ $bookingDetails->product->capacity }}</h2>
                         <hr class="border-patungan-border">

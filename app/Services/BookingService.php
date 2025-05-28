@@ -109,10 +109,15 @@ class BookingService
 
     $productCapacity = $bookingDetails->product->capacity ?? 0;
 
+    $totalParticipants = $subscriptionGroup->groupParticipants->count();
+    $remainingSlots = $productCapacity - $totalParticipants;
+
     return [
       'bookingDetails' => $bookingDetails,
       'subscriptionGroup' => $subscriptionGroup,
       'productCapacity' => $productCapacity,
+      'totalParticipants' => $totalParticipants,
+      'remainingSlots' => $remainingSlots,
     ];
   }
 }
