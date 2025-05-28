@@ -18,6 +18,15 @@
                     <img src="{{ asset('assets/images/icons/receipt-text-orange-fill.svg') }}"
                         class="w-[62px] flex shrink-0" alt="icon">
                     <h1 class="font-Grifter font-bold text-[32px] leading-[51px]">Lihat Pesanan Kamu</h1>
+                    @if ($errors->any())
+                        <div class="text-white font-bold py-3 px-10 rounded-full bg-patungan-orange">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{!! $error !!}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="flex flex-col gap-6">
                     <div class="grid grid-cols-2 gap-6">

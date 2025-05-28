@@ -53,13 +53,15 @@
                                     class="flex items-center justify-between rounded-3xl border border-patungan-border p-6 gap-6">
                                     <div class="flex items-center gap-4">
                                         <div class="flex w-[62px] h-[62px] shrink-0 rounded-xl overflow-hidden">
-                                            <img src="{{ asset('assets/images/logos/netflix.png') }}"
+                                            <img src="{{ Storage::url($bookingDetails->product->photo) }}"
                                                 class="w-full h-full object-contain" alt="logo">
                                         </div>
                                         <div>
-                                            <p class="font-bold text-xl leading-[25px]">Netflix</p>
+                                            <p class="font-bold text-xl leading-[25px]">{{ $bookingDetails->product->name }}
+                                            </p>
                                             <p class="text-patungan-grey">
-                                                <span class="font-semibold text-xl leading-[25px]">Rp46.500</span>
+                                                <span class="font-semibold text-xl leading-[25px]">Rp
+                                                    {{ number_format($bookingDetails->product->price_per_person, 0, '.', '.') }}</span>
                                                 <span class="font-bold leading-5">/person</span>
                                             </p>
                                         </div>
@@ -67,120 +69,46 @@
                                     <div class="flex items-center rounded-lg p-2 gap-1 bg-patungan-red/10">
                                         <img src="{{ asset('assets/images/icons/clock-red.svg') }}"
                                             class="w-6 flex shrink-0" alt="icon">
-                                        <p class="font-bold leading-5 text-patungan-red">1 month</p>
+                                        <p class="font-bold leading-5 text-patungan-red">
+                                            {{ $bookingDetails->product->duration }} month</p>
                                     </div>
                                 </div>
                                 <div class="flex flex-col gap-6">
-                                    <div class="flex items-center justify-between">
-                                        <h2 class="font-bold text-xl leading-[25px]">Broadcast Massage</h2>
-                                        <p id="Badge"
-                                            class="w-fit p-[12px_24px] rounded-full bg-[#3D7452] font-bold text-lg leading-[22px] text-white">
-                                            Delivery</p>
-                                    </div>
-                                    <div class="message-card flex gap-4">
-                                        <div class="flex w-16 h-16 rounded-full shrink-0 overflow-hidden">
-                                            <img src="{{ asset('assets/images/icons/Profile-logo.svg') }}"
-                                                class="w-full h-full object-cover" alt="profile">
+                                    @if ($subscriptionGroup->groupMessages->isNotEmpty())
+                                        <div class="flex items-center justify-between">
+                                            <h2 class="font-bold text-xl leading-[25px]">Broadcast Massage</h2>
+                                            <p id="Badge"
+                                                class="w-fit p-[12px_24px] rounded-full bg-[#3D7452] font-bold text-lg leading-[22px] text-white">
+                                                Delivery</p>
+                                            <p id="Badge"
+                                                class="w-fit p-[12px_24px] rounded-full bg-[#007B9D] font-bold text-lg leading-[22px] text-white">
+                                                Success</p>
                                         </div>
-                                        <div
-                                            class="flex flex-col flex-1 rounded-3xl rounded-tl-[4px] p-6 gap-6 bg-patungan-bg-grey">
-                                            <div class="message-text">
-                                                <p class="font-semibold text-lg leading-8">
-                                                    Hooray, the group quantity has been fulfilled. Please log in to the
-                                                    account with the following information
-                                                </p>
-                                                <br>
-                                                <p class="font-semibold text-lg leading-8">
-                                                    Netflix Email <br>
-                                                    Email: Patungan@gmail.com <br>
-                                                    Password: lebihhemat123! <br>
-                                                </p>
-                                                <br>
-                                                <p class="font-semibold text-lg leading-8">
-                                                    Netflix User <br>
-                                                    Name: Bimore Atreides <br>
-                                                    PIN: 32222 <br>
-                                                </p>
-                                                <br>
-                                                <p class="font-semibold text-lg leading-8">
-                                                    If you encounter any issues, please contact us. Enjoy!
-                                                </p>
+                                        @foreach ($subscriptionGroup->groupMessages as $message)
+                                            <div class="message-card flex gap-4">
+                                                <div class="flex w-16 h-16 rounded-full shrink-0 overflow-hidden">
+                                                    <img src="{{ asset('assets/images/icons/Profile-logo.svg') }}"
+                                                        class="w-full h-full object-cover" alt="profile">
+                                                </div>
+                                                <div
+                                                    class="flex flex-col flex-1 rounded-3xl rounded-tl-[4px] p-6 gap-6 bg-patungan-bg-grey">
+                                                    <div class="message-text">
+                                                        <p class="font-semibold text-lg leading-8">
+                                                            {{ $message->message }}
+                                                        </p>
+                                                    </div>
+                                                    <span
+                                                        class="time font-bold leading-5 text-patungan-grey">{{ $message->created_at->format('l, d M Y, H:i') }}
+                                                        WIB
+                                                    </span>
+                                                </div>
                                             </div>
-
-                                            <span class="time font-bold leading-5 text-patungan-grey">Today, 02:22 AM</span>
-                                        </div>
-                                    </div>
-                                    <div class="message-card flex gap-4">
-                                        <div class="flex w-16 h-16 rounded-full shrink-0 overflow-hidden">
-                                            <img src="{{ asset('assets/images/icons/Profile-logo.svg') }}"
-                                                class="w-full h-full object-cover" alt="profile">
-                                        </div>
-                                        <div
-                                            class="flex flex-col flex-1 rounded-3xl rounded-tl-[4px] p-6 gap-6 bg-patungan-bg-grey">
-                                            <div class="message-text">
-                                                <p class="font-semibold text-lg leading-8">
-                                                    Pesanan Anda berhasil diverifikasi. Mohon menunggu hingga grup mencapai
-                                                    jumlah yang diperlukan sebelum kami mengirimkan akun yang Anda inginkan.
-                                                    Terima kasih atas kesabaran Anda! Jika ada kendala, kami akan segera
-                                                    menghubungi Anda.
-                                                </p>
-                                            </div>
-
-                                            <span class="time font-bold leading-5 text-patungan-grey">Yesterday, 12:22
-                                                AM</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="Success" class="flex flex-col rounded-[32px] p-8 gap-8 bg-white overflow-hidden">
-                                <div
-                                    class="flex items-center justify-between rounded-3xl border border-patungan-border p-6 gap-6">
-                                    <div class="flex items-center gap-4">
-                                        <div class="flex w-[62px] h-[62px] shrink-0 rounded-xl overflow-hidden">
-                                            <img src="{{ asset('assets/images/logos/netflix.png') }}"
-                                                class="w-full h-full object-contain" alt="logo">
-                                        </div>
-                                        <div>
-                                            <p class="font-bold text-xl leading-[25px]">Netflix</p>
-                                            <p class="text-patungan-grey">
-                                                <span class="font-semibold text-xl leading-[25px]">Rp46.500</span>
-                                                <span class="font-bold leading-5">/person</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center rounded-lg p-2 gap-1 bg-patungan-red/10">
-                                        <img src="{{ asset('assets/images/icons/clock-red.svg') }}"
-                                            class="w-6 flex shrink-0" alt="icon">
-                                        <p class="font-bold leading-5 text-patungan-red">1 month</p>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-6">
-                                    <div class="flex items-center justify-between">
-                                        <h2 class="font-bold text-xl leading-[25px]">Broadcast Massage</h2>
-                                        <p id="Badge"
-                                            class="w-fit p-[12px_24px] rounded-full bg-[#007B9D] font-bold text-lg leading-[22px] text-white">
-                                            Success</p>
-                                    </div>
-                                    <div class="message-card flex gap-4">
-                                        <div class="flex w-16 h-16 rounded-full shrink-0 overflow-hidden">
-                                            <img src="{{ asset('assets/images/icons/Profile-logo.svg') }}"
-                                                class="w-full h-full object-cover" alt="profile">
-                                        </div>
-                                        <div
-                                            class="flex flex-col flex-1 rounded-3xl rounded-tl-[4px] p-6 gap-6 bg-patungan-bg-grey">
-                                            <div class="message-text">
-                                                <p class="font-semibold text-lg leading-8">
-                                                    Pesanan Anda berhasil diverifikasi. Mohon menunggu hingga grup mencapai
-                                                    jumlah yang diperlukan sebelum kami mengirimkan akun yang Anda inginkan.
-                                                    Terima kasih atas kesabaran Anda! Jika ada kendala, kami akan segera
-                                                    menghubungi Anda.
-                                                </p>
-                                            </div>
-
-                                            <span class="time font-bold leading-5 text-patungan-grey">Yesterday, 12:22
-                                                AM</span>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @else
+                                        <p class="text-center text-patungan-grey font-semibold py-4">
+                                            Belum ada broadcast message terbaru.
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -390,51 +318,42 @@
                             class="absolute top-0 w-full h-full object-cover object-top" alt="background">
                         <div class="relative w-full">
                             <p class="font-semibold text-xl leading-[25px] text-[#E2B9BB]">Your Booking Code:</p>
-                            <p class="font-bold text-[32px] leading-10 text-white">Patungan2050</p>
+                            <p class="font-bold text-[32px] leading-10 text-white">{{ $bookingDetails->booking_trx_id }}
+                            </p>
                         </div>
                     </div>
                     <div class="relative flex flex-col rounded-[32px] p-8 gap-6 bg-white">
-                        <h2 class="font-bold text-xl leading-[25px]">Group Member 2/4</h2>
+                        @php
+                            $totalParticipants = $subscriptionGroup->groupParticipants->count();
+                            $remainingSlots = $productCapacity - $totalParticipants;
+                        @endphp
+                        <h2 class="font-bold text-xl leading-[25px]">Group Member
+                            {{ $totalParticipants }}/{{ $bookingDetails->product->capacity }}</h2>
                         <hr class="border-patungan-border">
                         <div class="flex flex-col gap-6">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 flex shrink-0 rounded-full overflow-hidden">
-                                    <img src="{{ asset('assets/images/icons/member.svg') }}"
-                                        class="w-full h-full object-cover" alt="icon">
+                            @foreach ($subscriptionGroup->groupParticipants as $participant)
+                                <div class="flex items-center gap-4">
+                                    <div class="w-16 h-16 flex shrink-0 rounded-full overflow-hidden">
+                                        <img src="{{ asset('assets/images/icons/member.svg') }}"
+                                            class="w-full h-full object-cover" alt="icon">
+                                    </div>
+                                    <div class="flex flex-col gap-[6px]">
+                                        <p class="font-bold text-xl leading-[25px]">{{ $participant->name }}</p>
+                                        <p class="font-semibold text-lg leading-[22px] text-patungan-grey">Joined
+                                            {{ $participant->created_at->format('D, d M Y') }}</p>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col gap-[6px]">
-                                    <p class="font-bold text-xl leading-[25px]">You</p>
-                                    <p class="font-semibold text-lg leading-[22px] text-patungan-grey">Joined Sun,15 Sep
-                                        2024</p>
+                            @endforeach
+                            @for ($i = 0; $i < $remainingSlots; $i++)
+                                <div class="flex items-center gap-4">
+                                    <div class="w-16 h-16 flex shrink-0 rounded-full overflow-hidden">
+                                        <img src="{{ asset('assets/images/icons/waiting-member.svg') }}"
+                                            class="w-full h-full object-cover" alt="icon">
+                                    </div>
+                                    <p class="font-semibold text-xl italic leading-[25px] text-patungan-grey">Waiting
+                                        someone...</p>
                                 </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 flex shrink-0 rounded-full overflow-hidden">
-                                    <img src="{{ asset('assets/images/icons/member.svg') }}"
-                                        class="w-full h-full object-cover" alt="icon">
-                                </div>
-                                <div class="flex flex-col gap-[6px]">
-                                    <p class="font-bold text-xl leading-[25px]">Udin Marudin</p>
-                                    <p class="font-semibold text-lg leading-[22px] text-patungan-grey">Joined Sun,15 Sep
-                                        2024</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 flex shrink-0 rounded-full overflow-hidden">
-                                    <img src="{{ asset('assets/images/icons/waiting-member.svg') }}"
-                                        class="w-full h-full object-cover" alt="icon">
-                                </div>
-                                <p class="font-semibold text-xl italic leading-[25px] text-patungan-grey">Waiting
-                                    someone...</p>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 flex shrink-0 rounded-full overflow-hidden">
-                                    <img src="{{ asset('assets/images/icons/waiting-member.svg') }}"
-                                        class="w-full h-full object-cover" alt="icon">
-                                </div>
-                                <p class="font-semibold text-xl italic leading-[25px] text-patungan-grey">Waiting
-                                    someone...</p>
-                            </div>
+                            @endfor
                         </div>
                     </div>
                 </div>
